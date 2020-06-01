@@ -662,15 +662,6 @@
                 awslogs-region: !Ref AWS::Region
                 awslogs-group: !Ref NodeLogGroup
                 awslogs-stream-prefix: !Ref AWS::StackName
-            HealthCheck:
-              Command:
-                - CMD-SHELL
-                - python /home/tezos/utc-time-math.py `curl --silent http://127.0.0.1:8732/monitor/bootstrapped|jq -r .timestamp` `date -u +%Y-%m-%dT%H:%M:%SZ` 7200 || exit 0
-              Interval: 300
-              Timeout: 60
-              Retries: 10
-              StartPeriod: 300
-  
   # CodePipeline Resources
   
     NodeRepository:
